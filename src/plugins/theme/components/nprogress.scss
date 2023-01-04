@@ -1,0 +1,9 @@
+//进度条 nprogress
+#nprogress .bar {
+  @apply bg-blue-200;
+}
+@variants dark {
+  #nprogress .bar {
+    @apply bg-yellow-200;
+  }
+}

@@ -1,0 +1,12 @@
+//https://windicss.org/features/directives.html#variants
+:root {
+  color-scheme: light;
+  --header-border-color: theme("colors.light.700");
+  --nav-active-border-color: var(--#{$namespace}-color-primary);
+}
+
+.dark {
+  color-scheme: dark;
+  --header-border-color: theme("colors.dark.100");
+  --nav-active-border-color: theme("colors.yellow.200");
+}

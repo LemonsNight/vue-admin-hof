@@ -1,0 +1,44 @@
+@include b(login) {
+  @apply flex h-screen w-screen overflow-hidden relative;
+
+  @include e(left) {
+    @apply bounce-in-left w-1/2 flex items-end justify-center bg-light-400;
+    @include m(bg) {
+      filter: drop-shadow(2px 4px 6px black);
+      transform: scale3d(1.3, 1.3, 1.3);
+    }
+  }
+
+  @include e(right) {
+    @apply bounce-in-right w-1/2 flex items-start justify-center bg-dark-400;
+    @include m(bg) {
+      filter: drop-shadow(2px 4px 6px black);
+      transform: scale3d(1.5, 1.5, 1.5);
+    }
+    @include m(form) {
+      @apply w-500px h-400px bg-gray-400 bounce-in-top;
+    }
+  }
+
+  @include e(center) {
+    @apply transform-gpu absolute top-x-1/2 left-x-1/2 -translate-x-1/2 -translate-y-1/2 w-377px h-270px rounded border-dotted bg-light-50 p-4 bg-opacity-0;
+  }
+
+  @include e(title) {
+    @apply text-center bold font-mono mb-25px;
+  }
+
+  @include m(bg) {
+    background-image: url('@/assets/img/login/open-right.png'), url('@/assets/img/login/open-left.png'), url("@/assets/img/login/bg.png");
+    background-size: 15%, 15%, 100%;
+    background-position: 0 100%, 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  @include m(bg2) {
+    background-image: url('@/assets/img/login/close-right.png'), url('@/assets/img/login/close-left.png'), url("@/assets/img/login/bg.png");;
+    background-size: 15%, 15%, 100%;
+    background-position: 0 100%, 100% 100%;
+    background-repeat: no-repeat;
+  }
+}

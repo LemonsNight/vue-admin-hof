@@ -1,0 +1,36 @@
+$prefix-cls: #{$namespace}-base-menu;
+.#{$prefix-cls} {
+  @apply bg-transparent;
+  border-right: 0;
+
+  .#{$namespace}-menu--inline {
+    @apply bg-transparent;
+  }
+
+  .#{$namespace}-sub-menu__title {
+    @apply text-light-50;
+
+    &:hover {
+      @apply bg-light-500 bg-opacity-5;
+    }
+  }
+
+  .#{$namespace}-menu-item {
+    @apply text-light-50 bg-transparent;
+
+    &:hover {
+      @apply bg-light-500 bg-opacity-5;
+    }
+
+    &.is-active {
+      @apply relative bg-opacity-25 bg-blue-200/50 text-blue-400;
+
+      &:after {
+        @apply absolute top-0 right-0 w-4px h-full;
+        background-color: var(--nav-active-border-color);
+        content: '';
+      }
+    }
+  }
+}
+

@@ -1,0 +1,9 @@
+//命名空间
+$namespace: hof;
+//合并
+@forward "element-plus/theme-chalk/src/mixins/config.scss" with (
+  $namespace: $namespace
+);
+
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+@use 'animation.scss' as *;

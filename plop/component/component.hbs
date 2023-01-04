@@ -1,0 +1,9 @@
+<script setup lang="ts">
+  import { useNamespace } from "element-plus";
+
+  const ns = useNamespace('{{ name }}');
+</script>
+
+<template>
+  <div :class="[ns.b()]">{{ upperFirstName }}</div>
+</template>
