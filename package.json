@@ -1,6 +1,7 @@
 {
   "name": "vue-admin-hof",
   "version": "0.0.1",
+  "author": "Daiyousei",
   "scripts": {
     "dev": "vite --mode base",
     "build": "run-p type-check build:pro",
