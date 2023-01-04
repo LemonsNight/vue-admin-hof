@@ -39,7 +39,9 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
     plugins: [
       VueMacros({
         plugins: {
-          vue: vue(),
+          vue: vue({
+            reactivityTransform: true,
+          }),
           vueJsx: vueJsx(),
         },
       }),
