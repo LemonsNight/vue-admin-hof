@@ -44,7 +44,7 @@ const onClickClose = () => {
 </script>
 
 <template>
-  <div v-if="currentItem">
+  <div v-if="currentItem" class="flex items-center flex-col">
     <ElCard shadow="hover" :class="[ns.b()]">
       <template #header>
         <header :class="[ns.e(cardConfig.theme)]">

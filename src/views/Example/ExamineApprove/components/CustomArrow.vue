@@ -12,7 +12,7 @@ const { height } = defineModel<{
   height: number | string;
 }>();
 const getStyle = computed(() => {
-  return "height:" + unref(height) + "px";
+  return "min-height:" + unref(height) + "px";
 });
 // 触发菜单
 const showMenu = ref(false);
@@ -62,7 +62,7 @@ const onClickOutside = () => {
   }
 
   @include e(trigger) {
-    @apply z-3 transform-gpu -translate-y-1/2 -translate-x-1/2 left-1/2 cursor-pointer absolute top-1/2;
+    @apply transform-gpu -translate-y-1/2 -translate-x-1/2 left-1/2 cursor-pointer absolute top-1/2;
 
     @include m(icon) {
       @apply transform-gpu transition z-3 hover:scale-110;
