@@ -22,6 +22,7 @@ module.exports = {
   globals: {
     defineOptions: "writable",
     defineModel: "writable",
-    defineRender: "writable"
+    defineRender: "writable",
+    SE: "writable",
   }
 };

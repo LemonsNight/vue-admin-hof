@@ -3,6 +3,12 @@
   color-scheme: light;
   --header-border-color: theme("colors.light.700");
   --nav-active-border-color: var(--#{$namespace}-color-primary);
+
+  --arrow-border-color: theme("colors.zinc.300");
+  --active-color: var(--#{$namespace}-color-primary);
+  --initiate--color: #215476;
+  --approve--color: #fcca00;
+  --copy--color: #1890ff;
 }
 
 .dark {
