@@ -8,8 +8,9 @@ defineOptions({
 });
 
 const ns = useNamespace("custom-arrow");
-const { height } = defineModel<{
+const { height, showBottomIcon } = defineModel<{
   height: number | string;
+  showBottomIcon: boolean
 }>();
 const getStyle = computed(() => {
   return "min-height:" + unref(height) + "px";
@@ -46,6 +47,7 @@ const onClickOutside = () => {
       </div>
     </div>
     <Icon
+      v-if="showBottomIcon"
       :class="[ns.e('caret')]"
       icon="ep:caret-bottom"
       color="var(--arrow-border-color)"
@@ -70,7 +72,7 @@ const onClickOutside = () => {
   }
 
   @include e(select-menu) {
-    @apply absolute left-24px top-60px;
+    @apply absolute left-24px top-40px z-50;
   }
 
   @include e(caret) {

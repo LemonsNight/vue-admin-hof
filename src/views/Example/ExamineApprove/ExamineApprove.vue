@@ -6,7 +6,17 @@ const formData = reactive([
   { title: "发起人", type: 0, id: 12 },
   { title: "审批人", type: 1, id: 22 },
   { title: "抄送人", type: 2, id: 31 },
-  { title: "审批人", type: 2, id: 31, children: [] },
+  {
+    title: "条件分支",
+    type: 3,
+    id: 3122,
+    children: [
+      { title: "条件1", type: 3, id: 312 },
+      { title: "条件2", type: 3, id: 321 },
+      { title: "条件3", type: 3, id: 231 },
+      { title: "条件1", type: 3, id: 312 },
+    ],
+  },
 ]);
 </script>
 <template>

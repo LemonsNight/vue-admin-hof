@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useNamespace, ElInput } from "element-plus";
-const ns = useNamespace("card-flow");
 import { ElCard } from "element-plus";
 import { computed, ref, unref } from "vue";
 import { CardConfig, getInitTypeConfig } from "../constant";
@@ -10,6 +9,8 @@ import type { MenuConfigType } from "../types";
 defineOptions({
   name: "CardFlow",
 });
+
+const ns = useNamespace("card-flow");
 
 const { formData, currentItem } = defineModel<{
   formData: [];
@@ -44,7 +45,7 @@ const onClickClose = () => {
 </script>
 
 <template>
-  <div v-if="currentItem" class="flex items-center flex-col">
+  <div v-if="currentItem" class="flex items-center flex-col relative">
     <ElCard shadow="hover" :class="[ns.b()]">
       <template #header>
         <header :class="[ns.e(cardConfig.theme)]">
@@ -100,13 +101,15 @@ const onClickClose = () => {
       </main>
     </ElCard>
 
-    <CustomArrow @clickMenu="onClickMenu" :height="100" />
+    <CustomArrow :show-bottom-icon="currentItem.type !== 3" @clickMenu="onClickMenu" :height="100" />
+
   </div>
 </template>
 
 <style lang="scss">
 $prefix-cls: #{$namespace}-card-flow;
 $text: #fff; // 默认文字颜色
+
 
 @mixin header {
   color: $text;
@@ -130,6 +133,12 @@ $text: #fff; // 默认文字颜色
   @include e(copy) {
     background: var(--copy--color);
     @include header();
+  }
+
+  @include e(branch) {
+    @include header();
+    background: var(--branch--color);
+    color: var(--el-color-info-dark-2);
   }
 
   @include e(input) {

@@ -1,18 +1,26 @@
 import type { MenuConfigType } from "../types";
+export const ICON = {
+  branch: 'icon-park-twotone:branch-one',
+  copy: 'ep:promotion',
+  approve: 'ep:stamp',
+  add: 'ep:circle-plus-filled'
+}
+
+
 const initApprove = (): MenuConfigType => ({
-  icon: { icon: "ep:stamp", color: "var(--approve--color)" },
+  icon: { icon: ICON.approve, color: "var(--approve--color)" },
   title: "审批人",
   type: 1,
 });
 
 const initCopy = (): MenuConfigType => ({
-  icon: { icon: "ep:promotion", color: "var(--copy--color)" },
+  icon: { icon: ICON.copy, color: "var(--copy--color)" },
   title: "抄送人",
   type: 2,
 });
 
 const initBranch = (): MenuConfigType => ({
-  icon: { icon: "icon-park-twotone:branch-one", color: "var(--copy--color)" },
+  icon: { icon: ICON.branch, color: "var(--copy--color)" },
   title: "条件分支",
   type: 3,
 });
@@ -39,6 +47,10 @@ export const CardConfig = (type: MenuConfigType["type"]) => {
     case 2:
       return {
         theme: "copy",
+      };
+    case 3:
+      return {
+        theme: "branch",
       };
     default:
       return {
