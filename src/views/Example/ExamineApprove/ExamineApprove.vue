@@ -14,7 +14,17 @@ const formData = reactive([
       { title: "条件1", type: 3, id: 312 },
       { title: "条件2", type: 3, id: 321 },
       { title: "条件3", type: 3, id: 231 },
-      { title: "条件1", type: 3, id: 312 },
+      {
+        title: "条件1",
+        type: 3,
+        id: 312,
+        children: [
+          { title: "条件1", type: 3, id: 312 },
+          { title: "条件2", type: 3, id: 321 },
+          { title: "条件3", type: 3, id: 231 },
+          { title: "条件1", type: 3, id: 312 },
+        ],
+      },
     ],
   },
 ]);

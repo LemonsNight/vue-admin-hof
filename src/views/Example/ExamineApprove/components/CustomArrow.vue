@@ -10,7 +10,7 @@ defineOptions({
 const ns = useNamespace("custom-arrow");
 const { height, showBottomIcon } = defineModel<{
   height: number | string;
-  showBottomIcon: boolean
+  showBottomIcon: boolean;
 }>();
 const getStyle = computed(() => {
   return "min-height:" + unref(height) + "px";
@@ -60,7 +60,7 @@ const onClickOutside = () => {
   @apply w-300px flex flex-col justify-center items-center relative;
 
   @include e(card) {
-    @apply w-1px bg-zinc-300 relative;
+    @apply w-1px bg-zinc-300 relative min-h-100px;
   }
 
   @include e(trigger) {

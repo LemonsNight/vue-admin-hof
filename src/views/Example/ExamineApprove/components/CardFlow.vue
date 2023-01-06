@@ -101,15 +101,16 @@ const onClickClose = () => {
       </main>
     </ElCard>
 
-    <CustomArrow :show-bottom-icon="currentItem.type !== 3" @clickMenu="onClickMenu" :height="100" />
-
+    <CustomArrow
+      :show-bottom-icon="currentItem.type !== 3"
+      @clickMenu="onClickMenu"
+    />
   </div>
 </template>
 
 <style lang="scss">
 $prefix-cls: #{$namespace}-card-flow;
 $text: #fff; // 默认文字颜色
-
 
 @mixin header {
   color: $text;
