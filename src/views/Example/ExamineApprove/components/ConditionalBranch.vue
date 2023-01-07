@@ -40,6 +40,10 @@ const { currentItem } = defineModel<{
           :key="i"
           :class="[ns.em('border', t)]"
         />
+        <!--        递归组件-->
+        <template v-if="Array.isArray(item.children)">
+          <ConditionalBranch v-model:currentItem="currentItem.children[index]" />
+        </template>
       </article>
     </main>
   </div>

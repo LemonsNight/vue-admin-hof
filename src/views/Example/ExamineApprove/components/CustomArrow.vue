@@ -8,13 +8,9 @@ defineOptions({
 });
 
 const ns = useNamespace("custom-arrow");
-const { height, showBottomIcon } = defineModel<{
-  height: number | string;
+const { showBottomIcon } = defineModel<{
   showBottomIcon: boolean;
 }>();
-const getStyle = computed(() => {
-  return "min-height:" + unref(height) + "px";
-});
 // 触发菜单
 const showMenu = ref(false);
 
@@ -31,7 +27,6 @@ const onClickOutside = () => {
     <div
       class=""
       :class="[ns.e('card')]"
-      :style="getStyle"
       v-click-outside="onClickOutside"
     >
       <div :class="[ns.e('trigger')]" @click="handleMenu">
