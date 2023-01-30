@@ -18,6 +18,9 @@ import {
   ElTimeSelect,
   ElTransfer,
   ElUpload,
+  ElTree,
+  ElTreeSelect,
+  ElTreeV2,
 } from "element-plus";
 
 const componentMap: Recordable<Component, ComponentName> = {
@@ -40,6 +43,9 @@ const componentMap: Recordable<Component, ComponentName> = {
   SelectV2: ElSelectV2,
   RadioButton: ElRadioGroup,
   Upload: ElUpload,
+  Tree: ElTree,
+  TreeSelect: ElTreeSelect,
+  TreeV2: ElTreeV2,
 };
 
 export { componentMap };

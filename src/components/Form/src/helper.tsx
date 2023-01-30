@@ -1,14 +1,15 @@
-import type { Context, FormSchema } from "@/components/Form";
+import type { ColProps, Context, FormSchema } from "@/components/Form";
 import type { defineComponent } from "vue";
+import type { RowTypes } from "@/components/Form/src/FormProps";
 
 import { fromPairs, isArray, isFunction, isObject, isString } from "lodash-es";
-import { defaultElFormProps } from "@/components/Form/src/FormProps";
+
 import { componentMap } from "@/components/Form/src/componentMap";
 import { ElFormItem } from "element-plus";
 import { useRenderSelect } from "./components/useRenderSelect";
 import { useRenderCheck } from "@/components/Form/src/components/useRenderCheck";
 import { useRenderUpload } from "@/components/Form/src/components/useRenderUpload";
-
+import { defaultElFormProps } from "@/components/Form/src/FormProps";
 /**
  * 自定义表单组件
  * @param row
@@ -37,6 +38,22 @@ function renderComponent(row: FormSchema, context: Context) {
               return (
                 <CustomComponent
                   vModel={[context.formData[prop], "fileList"]}
+                  ref={(el) => {
+                    if (el) {
+                      context.ComRefs.value[prop + "Ref"] = el;
+                    }
+                  }}
+                  {...setComAttrs(row, context)}
+                >
+                  {{ ...setFromSlot(row) }}
+                </CustomComponent>
+              );
+            }
+            if (component === "Tree") {
+              return (
+                <CustomComponent
+                  data={context.formData[prop]}
+                  vModel={[context.formData[prop]]}
                   ref={(el) => {
                     if (el) {
                       context.ComRefs.value[prop + "Ref"] = el;
@@ -92,7 +109,6 @@ function setFromSlot(item: FormSchema) {
         case "Checkbox":
           return {
             default: () => renderCheckboxOptions(item),
-            // ...slots,
           };
         case "Upload":
           return {
@@ -210,5 +226,30 @@ function getElFormAttrs(props: object) {
     Object.entries(props).filter((item) => keys.includes(item[0]))
   );
 }
+/**
+ * 设置colProps的属性
+ * @param colProps
+ */
+function setLayout(colProps: ColProps | undefined): ColProps {
+  return isObject(colProps) ? colProps : {};
+}
 
-export { renderComponent, initFormField, getElFormItem, getElFormAttrs };
+/**
+ * 设置RowProps的属性
+ * @param rowProps
+ */
+function setRowProps(rowProps: RowTypes | undefined): RowTypes {
+  const props = {
+    gutter: 20,
+  };
+  return isObject(rowProps) ? { ...props, ...rowProps } : props;
+}
+
+export {
+  renderComponent,
+  initFormField,
+  getElFormItem,
+  getElFormAttrs,
+  setLayout,
+  setRowProps,
+};

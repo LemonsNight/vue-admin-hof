@@ -1,9 +1,8 @@
 import type { PropType } from "vue";
-import type { FormSchema } from "@/components/Form";
+import type { ColProps, FormSchema } from "@/components/Form";
 
 import { componentSizes } from "element-plus/es/constants/size";
 import type { FormRules } from "element-plus";
-
 export const defaultElFormProps = () => ({
   model: Object,
   rules: {
@@ -50,6 +49,19 @@ export const defaultElFormProps = () => ({
   scrollToError: Boolean,
 });
 
+export interface RowTypes {
+  tag?: string;
+  gutter?: number;
+  justify?:
+    | "start"
+    | "center"
+    | "end"
+    | "space-around"
+    | "space-between"
+    | "space-evenly";
+  align?: "top" | "middle" | "bottom";
+}
+
 export const formProps = () => ({
   propsList: {
     type: Array as PropType<FormSchema[]>,
@@ -59,6 +71,24 @@ export const formProps = () => ({
   formData: {
     type: Object,
     default: () => ({}),
+  },
+  isCol: {
+    type: Boolean,
+    default: false,
+  },
+  rowProps: {
+    type: Object as PropType<RowTypes>,
+    default: () => ({}),
+  },
+  colProps: {
+    type: Object as PropType<ColProps>,
+    default: () => ({
+      xs: 24,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 12,
+    }),
   },
   ...defaultElFormProps(),
 });

@@ -36,6 +36,7 @@ export interface FormSchema {
   optionsAlias?: OptionsAlias;
   api?: () => Promise<SelectOptions[]>;
   componentSlots?: Record<string, () => JSX.Element>;
+  colProps?: ColProps;
 }
 
 export interface Context {
@@ -52,9 +53,9 @@ export type SetSchemaOptions = {
 
 export type ColProps = {
   span?: number;
-  offset: number;
-  push: number;
-  pull: number;
+  offset?: number;
+  push?: number;
+  pull?: number;
   xs?: number;
   sm?: number;
   md?: number;

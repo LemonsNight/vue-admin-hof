@@ -17,7 +17,10 @@ export type ComponentName =
   | "Transfer"
   | "TimeSelect"
   | "SelectV2"
-  | "Upload";
+  | "Upload"
+  | "Tree"
+  | "TreeSelect"
+  | "TreeV2";
 
 export type ColProps = {
   span?: number;

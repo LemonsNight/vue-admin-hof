@@ -14,6 +14,8 @@ import {
   getElFormAttrs,
   initFormField,
   renderComponent,
+  setLayout,
+  setRowProps,
 } from "@/components/Form/src/helper";
 import { isFunction, isString } from "@vueuse/core";
 import type { SetSchemaOptions } from "@/components/Form";
@@ -24,8 +26,8 @@ export default defineComponent({
   inheritAttrs: false,
   props: formProps(),
   setup(props, context) {
-    const { attrs, expose, slots } = context;
-    const { propsList } = toRefs(props);
+    const { attrs, expose } = context;
+    const { propsList, formData: propFormData } = toRefs(props);
     const ElFormRef = ref<FormInstance>();
     const ComRefs = ref<Record<string, any>>({});
     // 获取表单渲染字段
@@ -35,6 +37,7 @@ export default defineComponent({
     // 初始化表单
     const formData = reactive({
       ...initFormField(unref(getPropsList)),
+      ...unref(propFormData),
     });
     // 初始化请求数据
     const initAsyncOptions = () => {
@@ -61,31 +64,24 @@ export default defineComponent({
       }
     };
 
-    const setComponentRef = () => {
-      unref(getPropsList).forEach((item) => {
-        if (!item.componentProps) {
-          item.componentProps = {};
-        }
-        if (item.prop) {
-          ComRefs.value[item.prop + "Ref"] = ref();
-          item.componentProps.ref = ComRefs.value[item.prop + "Ref"];
-        }
-      });
-    };
-    // setComponentRef();
-
     // 获取表单组件的Ref
     const getComponentRef = () => {
       return unref(ComRefs);
+    };
+
+    const getElFormRef = () => {
+      return unref(ElFormRef);
     };
 
     onMounted(() => {
       initAsyncOptions();
     });
     expose({
+      ElFormRef,
       formData,
       setSchema,
       getComponentRef,
+      getElFormRef,
     });
     return () => (
       <>
@@ -95,13 +91,19 @@ export default defineComponent({
           model={formData}
           ref={ElFormRef}
         >
-          <ElRow gutter={20}>
-            {unref(getPropsList).map((item) => (
-              <ElCol>
-                {renderComponent(item, { formData, ElFormRef, ComRefs })}
-              </ElCol>
-            ))}
-          </ElRow>
+          {props.isCol ? (
+            <ElRow {...setRowProps(props.rowProps)}>
+              {unref(getPropsList).map((item) => (
+                <ElCol {...{ ...props.colProps, ...setLayout(item.colProps) }}>
+                  {renderComponent(item, { formData, ElFormRef, ComRefs })}
+                </ElCol>
+              ))}
+            </ElRow>
+          ) : (
+            unref(getPropsList).map((item) =>
+              renderComponent(item, { formData, ElFormRef, ComRefs })
+            )
+          )}
         </ElForm>
       </>
     );
