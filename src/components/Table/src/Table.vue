@@ -6,11 +6,13 @@ const ns = useNamespace("pro-table");
 export default defineComponent({
   name: "ProTable",
   props: tableProps(),
-  setup() {
+  setup(props) {
     return () => (
       <>
         <ElTable class={ns.b()}>
-          <ElTableColumn></ElTableColumn>
+          {props.propsList.map((item) => (
+            <ElTableColumn label={item.label} prop={item.prop}></ElTableColumn>
+          ))}
         </ElTable>
       </>
     );
