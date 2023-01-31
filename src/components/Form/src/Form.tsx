@@ -69,10 +69,6 @@ export default defineComponent({
       return unref(ComRefs);
     };
 
-    const getElFormRef = () => {
-      return unref(ElFormRef);
-    };
-
     onMounted(() => {
       initAsyncOptions();
     });
@@ -81,7 +77,6 @@ export default defineComponent({
       formData,
       setSchema,
       getComponentRef,
-      getElFormRef,
     });
     return () => (
       <>

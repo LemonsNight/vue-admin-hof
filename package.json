@@ -9,6 +9,7 @@
     "build:uat": "vite build --mode uat",
     "build:pre": "vite build --mode pre",
     "build:pro": "vite build --mode pro ",
+    "build:com": "vite build --mode pro ",
     "type-check": "vue-tsc --noEmit",
     "preview": "vite preview --port 4173",
     "npm:check": "npx npm-check-updates",

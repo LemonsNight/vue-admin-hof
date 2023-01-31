@@ -1,5 +1,5 @@
 import Form from "@/components/Form/src/Form";
-import type { FormInstance } from "element-plus";
+import type { FormInstance, ElForm } from "element-plus";
 import type { ComponentName } from "@/types/components";
 
 export type SelectOptions = {
@@ -62,6 +62,13 @@ export type ColProps = {
   lg?: number;
   xl?: number;
   tag?: string;
+};
+
+export type FormExposeType = {
+  ElFormRef: ComponentRef<typeof ElForm>;
+  formData: Record<any, any>;
+  setSchema: (ext: SetSchemaOptions[]) => void;
+  getComponentRef: () => Record<string, any>;
 };
 
 export { Form };

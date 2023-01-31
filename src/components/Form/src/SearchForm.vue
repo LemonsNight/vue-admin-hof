@@ -8,7 +8,7 @@
   />
 </template>
 <script lang="tsx" setup>
-import { Form } from "@/components/Form";
+import { Form, FormExposeType } from "@/components/Form";
 import { ElButton, useNamespace } from "element-plus";
 import { ref, unref } from "vue";
 import { useIcon, Icon } from "@/components/Icon";
@@ -19,10 +19,9 @@ defineOptions({
 });
 
 const ns = useNamespace("search-form");
-const FormRef = ref<typeof Form>();
+const FormRef = ref<FormExposeType>();
 function onSearch() {
-  const getFormRef = unref(FormRef)?.ElFormRef;
-  console.log(getFormRef);
+  const getFormRef = unref(FormRef)!.ElFormRef;
   return new Promise((resolve, reject) => {
     getFormRef.validate((isValid, invalidFields) => {
       if (isValid) {
@@ -34,7 +33,7 @@ function onSearch() {
   });
 }
 function onReset() {
-  const getFormRef = unref(FormRef)?.getElFormRef();
+  const getFormRef = unref(FormRef)!.ElFormRef;
   getFormRef.resetFields();
 }
 const propsList: FormSchema[] = [
