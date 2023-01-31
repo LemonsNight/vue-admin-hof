@@ -15,9 +15,16 @@ const example: RouteRecordRaw[] = [
         meta: { title: "表单示例" },
       },
       {
+        path: "table",
+        name: "Table",
+        component: () => import("@/views/Example/Table/Table.vue"),
+        meta: { title: "表格示例" },
+      },
+      {
         path: "examineApprove",
         name: "ExamineApprove",
-        component: () => import("@/views/Example/ExamineApprove/ExamineApprove.vue"),
+        component: () =>
+          import("@/views/Example/ExamineApprove/ExamineApprove.vue"),
         meta: { title: "审批流" },
       },
     ],
