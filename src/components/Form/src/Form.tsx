@@ -6,6 +6,7 @@ import {
   ref,
   toRefs,
   unref,
+  watch,
 } from "vue";
 import { formProps } from "@/components/Form/src/FormProps";
 import type { FormInstance } from "element-plus";
@@ -73,12 +74,14 @@ export default defineComponent({
     onMounted(() => {
       initAsyncOptions();
     });
+
     expose({
       ElFormRef,
       formData,
       setSchema,
       getComponentRef,
     });
+
     return () => (
       <>
         <ElForm
