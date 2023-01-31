@@ -9,7 +9,7 @@ import {
 } from "vue";
 import { formProps } from "@/components/Form/src/FormProps";
 import type { FormInstance } from "element-plus";
-import { ElCol, ElForm, ElRow } from "element-plus";
+import { ElCol, ElForm, ElRow, useNamespace } from "element-plus";
 import {
   getElFormAttrs,
   initFormField,
@@ -20,6 +20,7 @@ import {
 import { isFunction, isString } from "@vueuse/core";
 import type { SetSchemaOptions } from "@/components/Form";
 import { isArray, set } from "lodash-es";
+const ns = useNamespace("base-form");
 
 export default defineComponent({
   name: "Form",
@@ -85,6 +86,7 @@ export default defineComponent({
           {...attrs}
           model={formData}
           ref={ElFormRef}
+          class={ns.b()}
         >
           {props.isCol ? (
             <ElRow {...setRowProps(props.rowProps)}>

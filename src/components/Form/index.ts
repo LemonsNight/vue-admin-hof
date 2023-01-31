@@ -37,6 +37,7 @@ export interface FormSchema {
   api?: () => Promise<SelectOptions[]>;
   componentSlots?: Record<string, () => JSX.Element>;
   colProps?: ColProps;
+  isHidden?: boolean;
 }
 
 export interface Context {

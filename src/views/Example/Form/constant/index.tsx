@@ -213,6 +213,9 @@ export const propsList: FormSchema[] = [
     label: "Tree 树形控件",
     prop: "Tree",
     component: "Tree",
+    formItemProps: {
+      width: "400px",
+    },
   },
   {
     label: "TreeSelect",
@@ -224,4 +227,38 @@ export const propsList: FormSchema[] = [
     prop: "TreeV2",
     component: "TreeV2",
   },
+];
+
+export const searchProps: FormSchema[] = [
+  {
+    label: "Input 输入框123",
+    prop: "Input2",
+    component: "Input",
+  },
+  {
+    label: "Input 输入框",
+    prop: "Input33",
+    component: "Input",
+  },
+  {
+    label: "Input 输入框",
+    prop: "Input4",
+    component: "Input",
+  },
+  {
+    label: "Cascader 级联选择器",
+    prop: "Cascader",
+    component: "Cascader",
+    componentProps: {
+      options: [
+        { label: "选项1", value: "1" },
+        { label: "选项2", value: "2" },
+      ],
+    },
+  },
+  // {
+  //   label: "DatePicker 日期选择器",
+  //   prop: "DatePicker",
+  //   component: "DatePicker",
+  // },
 ];

@@ -19,7 +19,7 @@ function renderComponent(row: FormSchema, context: Context) {
   if (!isObject(row)) {
     return <></>;
   }
-  const { render, component, prop, noRenderFormItem } = row;
+  const { render, component, prop, noRenderFormItem, isHidden } = row;
   const FormItemCom = noRenderFormItem ? "div" : ElFormItem;
   // 直接渲染组件
   if (isFunction(render)) {
@@ -31,7 +31,7 @@ function renderComponent(row: FormSchema, context: Context) {
       typeof defineComponent
     >;
     return (
-      <FormItemCom {...getElFormItem(row)}>
+      <FormItemCom {...getElFormItem(row)} v-show={!isHidden}>
         {{
           default: () => {
             if (component === "Upload") {
@@ -171,10 +171,6 @@ function setComAttrs(item: FormSchema, context: Context) {
         ...filterAttrs,
         options: Array.isArray(filterAttrs.options) ? filterAttrs.options : [],
       };
-    // case "Upload":
-    //   return {
-    //     ...filterAttrs,
-    //   };
     default:
       return {
         placeholder: `请输入${label}`,
