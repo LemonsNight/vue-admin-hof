@@ -1,3 +1,3 @@
-import Table from './src/Table.vue'
+import Table from "./src/Table.js";
 
-export { Table }
+export { Table };

@@ -2,7 +2,7 @@ import type { PropType, CSSProperties } from "vue";
 import type { TableProps } from "element-plus";
 type DefaultRow = any;
 type Layout = "fixed" | "auto";
-const defaultTableProps = {
+export const defaultTableProps = {
   data: {
     type: Array as PropType<DefaultRow[]>,
     default: () => [],
@@ -16,7 +16,10 @@ const defaultTableProps = {
     default: true,
   },
   stripe: Boolean,
-  border: Boolean,
+  border: {
+    type: Boolean,
+    default: true,
+  },
   rowKey: [String, Function] as PropType<TableProps<DefaultRow>["rowKey"]>,
   showHeader: {
     type: Boolean,
@@ -98,13 +101,32 @@ export interface TableSchema {
   prop?: string;
   // 标题
   label?: string;
+  componentSlots?: Record<string, () => JSX.Element>;
+  tableColumnProps?: Record<any, any>;
 }
 
 export const tableProps = () => ({
   propsList: {
-    type: Array as PropType<TableSchema>,
+    type: Array as PropType<TableSchema[]>,
     default: () => [],
     required: true,
   },
+  tableColumnProps: {
+    type: Object,
+    default: () => ({
+      align: "center",
+      "header-align": "center",
+      "show-overflow-tooltip": true,
+    }),
+  },
   ...defaultTableProps,
 });
+
+export const defaultPropsList = [
+  {
+    tableColumnProps: {
+      type: "index",
+      width: "50",
+    },
+  },
+];
