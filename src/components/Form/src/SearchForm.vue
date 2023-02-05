@@ -2,7 +2,7 @@
   <Form
     v-if="propsList.length > 1"
     inline
-    :is-col="false"
+    :is-col="true"
     :class="ns.b()"
     :props-list="propsList"
     ref="FormRef"
@@ -15,6 +15,7 @@ import { computed, ref, unref } from "vue";
 import { useIcon, Icon } from "@/components/Icon";
 
 import type { FormSchema } from "@/components/Form";
+import { isObject } from "@vueuse/core";
 defineOptions({
   name: "SearchForm",
 });
@@ -90,22 +91,39 @@ const propsList = computed(() => {
           </aside>
         );
       },
+      colProps: { xs: 24, sm: 24, md: 24, lg: 24, xl: 24 },
     },
-  ] as FormSchema[];
+  ].map((item) => ({
+    ...item,
+    componentProps: {
+      class: "w-full",
+      ...(isObject(item.componentProps) ? item.componentProps : {}),
+    },
+    formItemProps: {
+      class: "w-full",
+      ...(isObject(item.formItemProps) ? item.formItemProps : {}),
+    },
+    colProps: isObject(item.colProps)
+      ? item.colProps
+      : { xs: 24, sm: 12, md: 12, lg: 8, xl: 6 },
+  })) as FormSchema[];
 });
 </script>
 <style lang="scss">
 $prefix-cls: #{$namespace}-search-form;
 
 @include b(search-form) {
-  @apply flex flex-wrap;
+  //@apply flex flex-wrap;
 
   @include e(submit) {
     @apply w-full flex justify-end;
   }
 }
-
-.#{$namespace}-form-item:last-child {
-  @apply flex-1;
+//hof-base-form__col hof-form-item__content
+.#{$namespace}-base-form__col:last-child {
+  @apply flex-1 flex justify-end;
+  .#{$namespace}-form-item {
+    @apply mr-0;
+  }
 }
 </style>

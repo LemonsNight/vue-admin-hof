@@ -93,7 +93,10 @@ export default defineComponent({
           {props.isCol ? (
             <ElRow {...setRowProps(props.rowProps)}>
               {unref(getPropsList).map((item) => (
-                <ElCol {...{ ...props.colProps, ...setLayout(item.colProps) }}>
+                <ElCol
+                  class={ns.e("col")}
+                  {...{ ...props.colProps, ...setLayout(item.colProps) }}
+                >
                   {renderComponent(item, { formData, ElFormRef, ComRefs })}
                 </ElCol>
               ))}
