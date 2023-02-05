@@ -94,6 +94,7 @@ export default defineComponent({
             <ElRow {...setRowProps(props.rowProps)}>
               {unref(getPropsList).map((item) => (
                 <ElCol
+                  v-show={!item.isHidden}
                   class={ns.e("col")}
                   {...{ ...props.colProps, ...setLayout(item.colProps) }}
                 >

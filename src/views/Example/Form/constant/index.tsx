@@ -246,6 +246,11 @@ export const searchProps: FormSchema[] = [
     component: "Input",
   },
   {
+    label: "Input 输入框",
+    prop: "Input42",
+    component: "Input",
+  },
+  {
     label: "Cascader 级联选择器",
     prop: "Cascader",
     component: "Cascader",

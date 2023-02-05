@@ -26,7 +26,7 @@ const props = defineProps<{
 const ns = useNamespace("search-form");
 const FormRef = ref<FormExposeType>();
 const isMergeField = ref(false);
-const mergeMax = 3 + 1;
+const mergeMax = 2 + 1;
 function onSearch() {
   const getFormRef = unref(FormRef)!.ElFormRef;
   return new Promise((resolve, reject) => {
@@ -113,13 +113,10 @@ const propsList = computed(() => {
 $prefix-cls: #{$namespace}-search-form;
 
 @include b(search-form) {
-  //@apply flex flex-wrap;
-
   @include e(submit) {
     @apply w-full flex justify-end;
   }
 }
-//hof-base-form__col hof-form-item__content
 .#{$namespace}-base-form__col:last-child {
   @apply flex-1 flex justify-end;
   .#{$namespace}-form-item {
