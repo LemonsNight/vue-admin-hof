@@ -36,7 +36,9 @@ export default defineComponent({
 
             <div class={[ns.em("right", "main")]}>
               <ElScrollbar>
-                {slots["default"] && slots["default"]()}
+                <div class={"overflow-x-hidden"}>
+                  {slots["default"] && slots["default"]()}
+                </div>
               </ElScrollbar>
             </div>
 
