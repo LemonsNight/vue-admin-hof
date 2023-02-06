@@ -26,7 +26,7 @@ const props = defineProps<{
 const ns = useNamespace("search-form");
 const FormRef = ref<FormExposeType>();
 const isMergeField = ref(false);
-const mergeMax = 2 + 1;
+const mergeMax = 1 + 1;
 function onSearch() {
   const getFormRef = unref(FormRef)!.ElFormRef;
   return new Promise((resolve, reject) => {
