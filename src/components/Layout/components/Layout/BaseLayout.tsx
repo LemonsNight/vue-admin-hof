@@ -35,8 +35,8 @@ export default defineComponent({
             <BaseTabsMenu />
 
             <div class={[ns.em("right", "main")]}>
-              <ElScrollbar>
-                <div class={"overflow-x-hidden"}>
+              <ElScrollbar view-class={"h-full"}>
+                <div class={["overflow-x-hidden", "h-full"]}>
                   {slots["default"] && slots["default"]()}
                 </div>
               </ElScrollbar>

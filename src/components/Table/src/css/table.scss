@@ -1,0 +1,5 @@
+$prefix-cls: #{$namespace}-pro-table;
+.#{$prefix-cls} {
+  background: var(--table-bg-color);
+  @apply h-full flex flex-col p-4;
+}

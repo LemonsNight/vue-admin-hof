@@ -1,15 +1,10 @@
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  reactive,
-  ref,
-  unref,
-} from "vue";
-import { useNamespace, ElTable, ElTableColumn } from "element-plus";
+import { computed, defineComponent, reactive, ref, unref } from "vue";
+import { useNamespace, ElTable, ElTableColumn, ElButton } from "element-plus";
 import { getElTableAttrs } from "./hepler";
 import { isObject } from "lodash-es";
-import { tableProps } from "./constant";
+import { HeaderIcon, tableProps } from "./constant";
+import { useIcon } from "@/components/Icon";
+import "./css/table.scss";
 
 import type { TableSchema } from "./constant";
 
@@ -32,31 +27,34 @@ export default defineComponent({
         ...props.propsList,
       ] as TableSchema[];
     });
-    // 初始化表格参数
-    function init() {
-      getProps.maxHeight =
-        unref(ElTableRef)?.$el.parentNode.parentNode.offsetHeight;
-    }
-    onMounted(() => {
-      init();
-    });
     return () => (
-      <ElTable ref={ElTableRef} {...getProps} {...attrs} class={ns.b()}>
-        {unref(getPropsList).map((item) => (
-          <ElTableColumn
-            label={item.label}
-            prop={item.prop}
-            {...item.tableColumnProps}
-            {...(isObject(props.tableColumnProps)
-              ? props.tableColumnProps
-              : {})}
-          >
-            {{
-              ...(isObject(item.componentSlots) ? item.componentSlots : {}),
-            }}
-          </ElTableColumn>
-        ))}
-      </ElTable>
+      <div class={[ns.b()]}>
+        <header class={["flex", "justify-between", "mb-4"]}>
+          <div></div>
+          <div>
+            <ElButton circle icon={useIcon({ icon: HeaderIcon.refresh })} />
+            <ElButton circle icon={useIcon({ icon: HeaderIcon.print })} />
+            <ElButton circle icon={useIcon({ icon: HeaderIcon.operation })} />
+            <ElButton circle icon={useIcon({ icon: HeaderIcon.search })} />
+          </div>
+        </header>
+        <ElTable ref={ElTableRef} {...getProps} {...attrs} class={["flex-1"]}>
+          {unref(getPropsList).map((item) => (
+            <ElTableColumn
+              label={item.label}
+              prop={item.prop}
+              {...item.tableColumnProps}
+              {...(isObject(props.tableColumnProps)
+                ? props.tableColumnProps
+                : {})}
+            >
+              {{
+                ...(isObject(item.componentSlots) ? item.componentSlots : {}),
+              }}
+            </ElTableColumn>
+          ))}
+        </ElTable>
+      </div>
     );
   },
 });

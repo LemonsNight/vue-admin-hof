@@ -9,7 +9,10 @@ export const defaultTableProps = {
   },
   size: String,
   width: [String, Number],
-  height: [String, Number],
+  height: {
+    type: [String, Number],
+    default: "100%",
+  },
   maxHeight: [String, Number],
   fit: {
     type: Boolean,
@@ -130,3 +133,10 @@ export const defaultPropsList = [
     },
   },
 ];
+
+export const HeaderIcon = {
+  refresh: "ep:refresh",
+  print: "material-symbols:print-outline",
+  operation: "ep:operation",
+  search: "ep:search",
+};

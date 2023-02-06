@@ -10,6 +10,7 @@
 
     @include m(main) {
       @apply flex-1 overflow-hidden bg-light-400 p-2;
+      background: var(--layout-main-bg-color);
     }
   }
 }
