@@ -22,6 +22,20 @@ const onActiveTab = (id: number) => {
     >
       <span :class="[ns.e('title')]">tabs-{{ item }}</span>
       <Icon :class="[ns.e('close')]" icon="material-symbols:close" size="10" />
+      <div class="absolute bottom-0 -right-10px bg-light-500">
+        <div
+          v-if="item === tabsConfig.id"
+          style="border-radius: 0 0 0 3px"
+          class="w-10px h-10px bg-light-900"
+        ></div>
+      </div>
+      <div class="absolute bottom-0 -left-10px bg-light-500">
+        <div
+          v-if="item === tabsConfig.id"
+          style="border-radius: 0 0 3px 0"
+          class="w-10px h-10px bg-light-900"
+        ></div>
+      </div>
     </li>
   </ul>
 </template>
