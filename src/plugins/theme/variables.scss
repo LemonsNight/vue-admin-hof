@@ -14,6 +14,13 @@
   --table-bg-color: theme("colors.light.50");
 
   --layout-main-bg-color: theme("colors.light.500");
+
+  //Tabs主题
+  --tabs-bg-color: theme("colors.light.900");
+  --tabs-border-color: theme("colors.dark.900");
+  --tabs-active-bg-color: var(--layout-main-bg-color);
+  --tabs-hover-close-bg-color: theme("colors.dark.100");
+  --tabs-hover-close-color: theme("colors.light.200");
 }
 
 .dark {

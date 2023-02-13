@@ -122,17 +122,17 @@ export const tableProps = () => ({
       "show-overflow-tooltip": true,
     }),
   },
+  paginationProps: {
+    type: Object,
+    default: () => ({
+      background: true,
+      layout: "total, sizes, prev, pager, next, jumper",
+      total: 0,
+      defaultCurrentPage: 1,
+    }),
+  },
   ...defaultTableProps,
 });
-
-export const defaultPropsList = [
-  {
-    tableColumnProps: {
-      type: "index",
-      width: "50",
-    },
-  },
-];
 
 export const HeaderIcon = {
   refresh: "ep:refresh",

@@ -1,5 +1,11 @@
 import { computed, defineComponent, reactive, ref, unref } from "vue";
-import { useNamespace, ElTable, ElTableColumn, ElButton } from "element-plus";
+import {
+  useNamespace,
+  ElTable,
+  ElTableColumn,
+  ElButton,
+  ElPagination,
+} from "element-plus";
 import { getElTableAttrs } from "./hepler";
 import { isObject } from "lodash-es";
 import { HeaderIcon, tableProps } from "./constant";
@@ -54,6 +60,9 @@ export default defineComponent({
             </ElTableColumn>
           ))}
         </ElTable>
+        <aside class={["mt-4", "flex", "justify-end"]}>
+          <ElPagination {...props.paginationProps} />
+        </aside>
       </div>
     );
   },

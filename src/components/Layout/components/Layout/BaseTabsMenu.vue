@@ -1,34 +1,56 @@
 <script lang="ts" setup>
-import { useNamespace } from "element-plus";
+import { useNamespace, ElScrollbar } from "element-plus";
+import { reactive } from "vue";
 
 const ns = useNamespace("base-tabs-menu");
+
+const tabsConfig = reactive({
+  id: 1,
+});
+
+const onActiveTab = (id: number) => {
+  tabsConfig.id = id;
+};
 </script>
 <template>
-  <ElScrollBar>
-    <ul v-menu :class="[ns.b()]">
-      <li></li>
-      <li
-        v-for="item in 30"
-        :key="item"
-        :class="[ns.e('item'), item === 1 ? ns.e('active') : '', '']"
-      >
-        <span>测试{{ item }}</span>
-        <Icon icon="material-symbols:close" />
-      </li>
-    </ul>
-  </ElScrollBar>
+  <ul v-menu :class="[ns.b()]">
+    <li
+      @click="onActiveTab(item)"
+      v-for="item in 50"
+      :key="item"
+      :class="[ns.e('item'), item === tabsConfig.id && ns.e('active')]"
+    >
+      <span :class="[ns.e('title')]">tabs-{{ item }}</span>
+      <Icon :class="[ns.e('close')]" icon="material-symbols:close" size="10" />
+    </li>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
 @include b(base-tabs-menu) {
-  @apply flex items-center w-full bg-blue-400 h-30px;
+  background: var(--tabs-bg-color);
+  @apply relative flex items-center pt-2px pl-2 pr-2 text-xs select-none overflow-hidden;
 
   @include e(item) {
-    @apply bg-gray-400 flex items-center w-1/10 max-w-240px whitespace-nowrap;
+    @apply relative flex items-center whitespace-nowrap pl-10px pr-2px pt-1 pb-1 cursor-default;
+  }
+
+  @include e(title) {
+    @apply mr-1;
+  }
+
+  @include e(close) {
+    &:hover {
+      background: var(--tabs-hover-close-bg-color);
+      color: var(--tabs-hover-close-color);
+      padding: 4px;
+    }
   }
 
   @include e(active) {
-    @apply bg-blue-400 overflow-hidden rounded;
+    @apply relative;
+    background: var(--tabs-active-bg-color);
+    border-radius: 2px 2px 0 0;
   }
 }
 </style>
