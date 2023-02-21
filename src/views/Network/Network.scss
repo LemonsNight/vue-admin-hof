@@ -1,0 +1,20 @@
+.not-container {
+  @apply flex items-center justify-center flex-wrap w-full h-full;
+  .not-img {
+    //margin-right: 120px;
+    padding: 0 60px;
+  }
+  .not-detail {
+    @apply flex flex-col;
+    h2 {
+      font-size: 60px;
+      color: var(--#{$namespace}-text-color-primary);
+    }
+    h4 {
+      margin: 30px 0 20px;
+      font-size: 19px;
+      font-weight: normal;
+      color: var(--#{$namespace}-text-color-regular);
+    }
+  }
+}

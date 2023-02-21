@@ -1,7 +1,7 @@
 import type { AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 const BASE_URL = {
-  base: "http://api_test.kxblive.com",
+  base: "http://api_uat.kxblive.com",
   dev: "http://api_test.kxblive.com",
   uat: "http://api_uat.kxblive.com",
   pre: "https://api-pre.kxblive.com",
