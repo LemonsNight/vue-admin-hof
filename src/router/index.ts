@@ -8,7 +8,16 @@ import { network } from "@/router/modules/network";
 const { beforeEach, beforeResolve, afterEach } = setupRouter();
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...user, ...example, ...network],
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: Layout,
+    },
+    ...user,
+    ...example,
+    ...network,
+  ],
 });
 
 beforeEach(router);

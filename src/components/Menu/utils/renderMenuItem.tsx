@@ -11,7 +11,7 @@ export const renderMenuItem = (menuList: MenuItemsType[]) => {
               title: () => (
                 <>
                   <Icon icon={menuItem.icon} />
-                  <span>{menuItem.title}</span>
+                  <span class={"select-none"}>{menuItem.title}</span>
                 </>
               ),
               default: () =>
@@ -24,7 +24,7 @@ export const renderMenuItem = (menuList: MenuItemsType[]) => {
         <ElMenuItem index={menuItem.index}>
           {{
             default: () => <Icon icon={menuItem.icon} />,
-            title: () => <span>{menuItem.title}</span>,
+            title: () => <span class={"select-none"}>{menuItem.title}</span>,
           }}
         </ElMenuItem>
       );

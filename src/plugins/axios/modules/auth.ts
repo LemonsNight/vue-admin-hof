@@ -13,3 +13,10 @@ export const postLogin = async (data: {
   });
   return res.data;
 };
+
+export const getMenuList = async (): Promise<string> => {
+  const res = await service({
+    url: auth.getMenuList,
+  });
+  return res.data;
+};

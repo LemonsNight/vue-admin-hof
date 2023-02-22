@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { pinia } from "@/stores";
 import type { permissionState } from "@/stores/types/permissions";
 import { BASE_TOKEN } from "@/plugins/axios/config";
+import { getMenuList } from "@/plugins/axios/modules/auth";
 
 export const usePermissionsStore = defineStore({
   id: "permissionsConfig",
@@ -14,6 +15,12 @@ export const usePermissionsStore = defineStore({
   actions: {
     setPermissions(data: string | null) {
       this.token = data;
+      this.getMenuList();
+    },
+    getMenuList() {
+      getMenuList().then((data) => {
+        console.log(data);
+      });
     },
   },
   persist: {

@@ -12,8 +12,8 @@ const onLogin = (formRef: FormInstance, formData) => {
       if (valid) {
         const data = await postLogin(formData);
         setPermissions(data);
-        await router.push("/");
-        resolve(true);
+        // await router.push("/");
+        // resolve(true);
       }
     });
   });
