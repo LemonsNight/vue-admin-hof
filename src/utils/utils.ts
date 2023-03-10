@@ -29,6 +29,14 @@ function filterForm(data: object) {
     : {};
 }
 
+export const isUrl = (path: string): boolean => {
+  //判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+  //下面的代码中应用了转义字符"\"输出一个字符"/"
+  const Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+  const objExp = new RegExp(Expression);
+  return objExp.test(path);
+};
+
 export {
   isPromise,
   isFunction,

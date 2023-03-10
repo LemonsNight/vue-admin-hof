@@ -56,10 +56,11 @@ const FORM_FIELD = function (): FormSchema[] {
                 loading={loading.value}
                 type={"primary"}
                 icon={useIcon({ icon: "material-symbols:login" })}
-                onClick={async () => {
+                onClick={() => {
                   loading.value = true;
-                  await onLogin(ElFormRef, formData);
-                  loading.value = false;
+                  onLogin(ElFormRef, formData).finally(() => {
+                    loading.value = false;
+                  });
                 }}
               >
                 登录
@@ -70,7 +71,8 @@ const FORM_FIELD = function (): FormSchema[] {
             </div>
             <ElButton
               icon={useIcon({ icon: "material-symbols:devices-other" })}
-              type={"text"}
+              text
+              type={"primary"}
             >
               第三方登录
             </ElButton>

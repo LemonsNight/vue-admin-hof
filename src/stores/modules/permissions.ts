@@ -1,10 +1,10 @@
 // 权限 Permissions
 import { defineStore } from "pinia";
 import { pinia } from "@/stores";
-import type { permissionState } from "@/stores/types/permissions";
 import { BASE_TOKEN } from "@/plugins/axios/config";
-import { getMenuList } from "@/plugins/axios/modules/auth";
-
+import type { permissionState } from "@/stores/types/permissions";
+import { replaceRouter } from "@/router/setupRouter";
+// import router from "@/router";
 export const usePermissionsStore = defineStore({
   id: "permissionsConfig",
   state: (): permissionState => ({
@@ -13,14 +13,15 @@ export const usePermissionsStore = defineStore({
     permissions: [],
   }),
   actions: {
+    clearPermissions() {
+      this.token = "";
+      this.routerList = [];
+      this.permissions = [];
+      replaceRouter();
+      window.location.reload();
+    },
     setPermissions(data: string | null) {
       this.token = data;
-      this.getMenuList();
-    },
-    getMenuList() {
-      getMenuList().then((data) => {
-        console.log(data);
-      });
     },
   },
   persist: {

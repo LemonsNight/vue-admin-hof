@@ -1,7 +1,7 @@
 import type { AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 const BASE_URL = {
-  base: "http://api_uat.kxblive.com",
+  base: "",
   dev: "http://api_test.kxblive.com",
   uat: "http://api_uat.kxblive.com",
   pre: "https://api-pre.kxblive.com",
@@ -14,6 +14,14 @@ const BASE_TOKEN = {
   uat: "UAT-TOKEN",
   pre: "PRE-TOKEN",
   pro: "PRO-TOKEN",
+};
+
+const BASE_MENU = {
+  base: "BASE-MENU",
+  dev: "DEV-MENU",
+  uat: "UAT-MENU",
+  pre: "PRE-MENU",
+  pro: "PRO-MENU",
 };
 
 const TIMEOUT = 1000 * 60;
@@ -35,4 +43,4 @@ const axiosResponse = (response: AxiosResponse) => {
   }
 };
 
-export { BASE_URL, TIMEOUT, BASE_TOKEN, axiosResponse };
+export { BASE_URL, TIMEOUT, BASE_TOKEN, BASE_MENU, axiosResponse };

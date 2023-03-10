@@ -7,35 +7,52 @@ import {
   ElDropdownMenu,
   ElDropdownItem,
 } from "element-plus";
-import { computed, reactive, ref, unref } from "vue";
+import { computed, onMounted, reactive, ref, unref, watch } from "vue";
 import { useMouse } from "@vueuse/core";
 import { ContextMenuList } from "@/components/Layout/constant/BaseTAbsMenu";
-const ns = useNamespace("base-tabs-menu");
-
-const tabsConfig = reactive({
-  id: 1,
+import { useGlobalDataStoreWithOut } from "@/stores/modules/globalData";
+import { useRoute, useRouter } from "vue-router";
+defineOptions({
+  name: "BaseTabsMenu",
 });
-
-const onActiveTab = (id: number) => {
-  tabsConfig.id = id;
+onMounted(() => {
+  if (!globalDataStore.tagRoute.size) {
+    router
+      .getRoutes()
+      .filter((t) => t.meta && t.meta.isFixTag)
+      .forEach((t) => {
+        globalDataStore.setTagRoute(t.fullPath || t.path, t);
+      });
+    if (!globalDataStore.tagRoute.has(unref(router.currentRoute).fullPath)) {
+      globalDataStore.setTagRoute(
+        unref(router.currentRoute).fullPath,
+        unref(router.currentRoute)
+      );
+    }
+  }
+});
+const route = useRoute();
+const router = useRouter();
+const globalDataStore = useGlobalDataStoreWithOut();
+const setBeforeResolve = (to) => {
+  globalDataStore.tagRoute.set(to.fullPath, to);
+};
+globalDataStore.pushBeforeResolveEvents("baseTabsMenu", setBeforeResolve);
+const ns = useNamespace("base-tabs-menu");
+const tabsConfig = computed(() => route.fullPath);
+const onBeforeLeave = async (activeName) => {
+  const activeNameRoute = globalDataStore.tagRoute.get(activeName);
+  await router.push(activeNameRoute.fullPath || activeNameRoute.path);
 };
 
-const defaultMenu = [
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-  { label: "菜单" },
-].map((item, i) => ({ label: item.label + i, value: i }));
+const onActiveTab = (id: number) => {
+  tabsConfig.value.id = id;
+};
+
+const defaultMenu = [{ label: "菜单" }].map((item, i) => ({
+  label: item.label + i,
+  value: i,
+}));
 
 const menuPoi = reactive({
   x: 0,
@@ -47,7 +64,7 @@ const getStyle = computed(
 const { x, y } = useMouse();
 const ElDropdownRef = ref();
 const isShow = ref(false);
-const onContextmenu = (e: Event) => {
+const onContextmenu = (e: Event, item) => {
   e.preventDefault();
   if (!unref(isShow)) {
     unref(ElDropdownRef).handleClose();
@@ -87,20 +104,21 @@ const handleVisible = (visible: boolean) => {
   <!--  </ul>-->
   <div :class="[ns.b()]">
     <aside class="flex-1 overflow-hidden relative">
-      <ElTabs closable v-model:active-name="tabsConfig.id">
+      <ElTabs :model-value="tabsConfig" :before-leave="onBeforeLeave">
         <ElTabPane
-          v-for="item in defaultMenu"
-          :key="item.value"
-          :label="item.label"
-          :name="item.value"
+          v-for="item in globalDataStore.getTagList"
+          :key="item.fullPath || item.path"
+          :label="item.meta.title"
+          :name="item.fullPath || item.path"
+          :closable="!item.meta.isFixTag"
         >
           <template #label>
             <div
               class="flex items-center select-none"
-              @contextmenu="onContextmenu"
+              @contextmenu="onContextmenu($event, item)"
             >
-              <Icon icon="ep:menu" />
-              <span>{{ item.label }}</span>
+              <Icon :icon="item.meta.icon || 'ep:menu'" />
+              <span>{{ item.meta.title }}</span>
             </div>
           </template>
         </ElTabPane>

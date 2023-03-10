@@ -9,12 +9,16 @@
   />
 </template>
 <script lang="tsx" setup>
-import { Form, FormExposeType, SetSchemaOptions } from "@/components/Form";
+import { Form } from "@/components/Form";
 import { ElButton, useNamespace } from "element-plus";
 import { computed, ref, unref } from "vue";
 import { useIcon, Icon } from "@/components/Icon";
 
-import type { FormSchema } from "@/components/Form";
+import type {
+  FormSchema,
+  FormExposeType,
+  SetSchemaOptions,
+} from "@/components/Form";
 import { isObject } from "@vueuse/core";
 defineOptions({
   name: "SearchForm",
@@ -81,7 +85,7 @@ const propsList = computed(() => {
                   setMergeField();
                 }}
               >
-                <span>合并</span>
+                <span>{!unref(isMergeField) ? "合并" : "展开"}</span>
                 <Icon
                   class="ml-1"
                   icon={unref(isMergeField) ? "ep:arrow-down" : "ep:arrow-up"}

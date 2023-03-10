@@ -10,16 +10,16 @@ const configStore = useConfigStoreWithOut();
 export default defineComponent({
   name: "Layout",
   setup() {
-    const key = ref(Date.now());
-    const updateKey = useDebounceFn(() => {
-      key.value = Date.now();
-    }, 200);
-    onMounted(() => {
-      window.addEventListener("resize", updateKey);
-    });
-    onBeforeUnmount(() => {
-      window.removeEventListener("resize", updateKey);
-    });
+    // const key = ref(Date.now());
+    // const updateKey = useDebounceFn(() => {
+    //   key.value = Date.now();
+    // }, 200);
+    // onMounted(() => {
+    //   window.addEventListener("resize", updateKey);
+    // });
+    // onBeforeUnmount(() => {
+    //   window.removeEventListener("resize", updateKey);
+    // });
     const getLayout = () => {
       switch (configStore.layoutMode) {
         case 1:
@@ -41,7 +41,7 @@ export default defineComponent({
     return () => (
       <>
         {getLayout()}
-        <Setting key={key.value} />
+        <Setting />
       </>
     );
   },

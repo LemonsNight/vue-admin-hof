@@ -4,14 +4,16 @@ import PurgeIcons from "vite-plugin-purge-icons";
 import type { ConfigEnv, UserConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import ElementPlus from "unplugin-element-plus/vite";
 import { resolve } from "path";
 import WindiCSS from "vite-plugin-windicss";
 import visualizer from "rollup-plugin-visualizer"; // 依赖分析
 import autoprefixer from "autoprefixer"; // CSS浏览器前缀
-// @ts-ignore
-import externalGlobals from "rollup-plugin-external-globals"; // 剔除依赖包
 import VueMacros from "unplugin-vue-macros/vite"; // Vue 宏
+import ElementPlus from "unplugin-element-plus/vite";
+
+// import externalGlobals from "rollup-plugin-external-globals"; // 剔除依赖包
+import { viteMockServe } from "vite-plugin-mock";
+
 // https://vitejs.dev/config/
 const root = process.cwd();
 
@@ -58,17 +60,17 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       }),
       PurgeIcons(),
       WindiCSS(),
-      // viteMockServe({
-      //   ignore: /^\_/,
-      //   mockPath: "src/mock",
-      //   localEnabled: !isBuild,
-      //   prodEnabled: isBuild,
-      //   injectCode: `
-      //     import { setupProdMockServer } from '@/mock/_createProductionServer'
-      //
-      //     setupProdMockServer()
-      //     `,
-      // }),
+      viteMockServe({
+        ignore: /^_/,
+        mockPath: "src/mock",
+        localEnabled: !isBuild,
+        prodEnabled: isBuild,
+        injectCode: `
+          import { setupProdMockServer } from '@/mock/_createProductionServer'
+
+          setupProdMockServer()
+          `,
+      }),
       ...plugins,
     ],
     resolve: {

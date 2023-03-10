@@ -1,17 +1,20 @@
 import type { MenuItemsType } from "@/types/menu";
 import { ElMenuItem, ElSubMenu } from "element-plus";
 import { Icon } from "@/components/Icon";
+import { isUrl } from "@/utils/utils";
+import router from "@/router";
+
 export const renderMenuItem = (menuList: MenuItemsType[]) => {
   if (Array.isArray(menuList)) {
     return menuList.map((menuItem) => {
       if (Array.isArray(menuItem.children) && menuItem.children.length) {
         return (
-          <ElSubMenu index={menuItem.index as string}>
+          <ElSubMenu index={menuItem.id}>
             {{
               title: () => (
                 <>
-                  <Icon icon={menuItem.icon} />
-                  <span class={"select-none"}>{menuItem.title}</span>
+                  <Icon icon={menuItem.meta.icon} />
+                  <span class={"select-none"}>{menuItem.meta.title}</span>
                 </>
               ),
               default: () =>
@@ -21,10 +24,23 @@ export const renderMenuItem = (menuList: MenuItemsType[]) => {
         );
       }
       return (
-        <ElMenuItem index={menuItem.index}>
+        <ElMenuItem
+          index={menuItem.id}
+          onClick={() => {
+            if (menuItem.path) {
+              if (isUrl(menuItem.path)) {
+                window.open(menuItem.path);
+              } else {
+                router.push(menuItem.path);
+              }
+            }
+          }}
+        >
           {{
-            default: () => <Icon icon={menuItem.icon} />,
-            title: () => <span class={"select-none"}>{menuItem.title}</span>,
+            default: () => <Icon icon={menuItem.meta.icon} />,
+            title: () => (
+              <span class={"select-none"}>{menuItem.meta.title}</span>
+            ),
           }}
         </ElMenuItem>
       );

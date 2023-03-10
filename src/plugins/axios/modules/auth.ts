@@ -1,22 +1,23 @@
 import { service } from "@/plugins/axios";
 import { auth } from "@/plugins/axios/api";
 
-// 登录
-export const postLogin = async (data: {
+export type PostLoginType = {
   username: string;
   password: string;
-}): Promise<string> => {
+};
+// 登录
+export const postLogin = async (data: PostLoginType): Promise<string> => {
   const res = await service({
     method: "post",
     data,
     url: auth.login,
   });
-  return res.data;
+  return res && res.data;
 };
 
-export const getMenuList = async (): Promise<string> => {
+export const getMenuList = async (): Promise<any[]> => {
   const res = await service({
     url: auth.getMenuList,
   });
-  return res.data;
+  return res && res.data;
 };

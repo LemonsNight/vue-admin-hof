@@ -7,6 +7,7 @@ const example: RouteRecordRaw[] = [
     name: "Example",
     meta: { title: "示例" },
     component: Layout,
+    redirect: "/example/form",
     children: [
       {
         path: "form",

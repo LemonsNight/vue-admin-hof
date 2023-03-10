@@ -5,6 +5,11 @@ import {
   ElDropdownItem,
   ElDropdownMenu,
 } from "element-plus";
+import { usePermissionsStore } from "@/stores/modules/permissions";
+const permissionsStore = usePermissionsStore();
+const onExitSys = () => {
+  permissionsStore.clearPermissions();
+};
 </script>
 <template>
   <ElDropdown size="large">
@@ -15,7 +20,7 @@ import {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem>修改信息</ElDropdownItem>
-        <ElDropdownItem>退出系统</ElDropdownItem>
+        <ElDropdownItem @click="onExitSys">退出系统</ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>
