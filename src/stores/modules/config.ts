@@ -28,7 +28,6 @@ export const useConfigStore = defineStore("storeConfig", {
     setStateAttribute(data: StateType) {
       if (isObject(data)) {
         for (const [k, v] of Object.entries(data)) {
-          // @ts-ignore
           this[k] = v;
         }
       }
