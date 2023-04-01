@@ -21,10 +21,6 @@ export default defineComponent({
       type: Array as PropType<MenuItemsType[]>,
       default: () => [],
     },
-    keyObject: {
-      type: Object,
-      default: () => ({}),
-    },
   },
   setup(props) {
     const { menuItemList } = toRefs(props);
