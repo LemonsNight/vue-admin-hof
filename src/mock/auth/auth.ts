@@ -12,6 +12,30 @@ export default [
         msg: "success",
         data: [
           {
+            name: "ChatGPT",
+            path: "/chatGPT",
+            meta: { title: "ChatGPT", icon: "material-symbols:chat" },
+            redirect: "/ChatGPT/chatGPTDemo",
+            id: "20",
+            component: "#",
+            children: [
+              {
+                id: "33",
+                meta: { title: "ChatGPT", icon: "material-symbols:chat" },
+                name: "chatGPTDemo",
+                path: "/chatGPT/chatGPTDemo",
+                component: "/views/ChatGPT/ChatGPT.vue",
+              },
+              {
+                id: "333",
+                meta: { title: "BingAI", icon: "mdi:microsoft-edge" },
+                name: "BingAI",
+                path: "/chatGPT/BingAI",
+                component: "/views/ChatGPT/BingAI.vue",
+              },
+            ],
+          },
+          {
             name: "Example",
             path: "/example",
             meta: {
@@ -53,26 +77,17 @@ export default [
             children: [
               {
                 id: "6",
-                meta: {
-                  title: "Vue",
-                  icon: "vscode-icons:file-type-vue",
-                },
+                meta: { title: "Vue", icon: "vscode-icons:file-type-vue" },
                 path: "https://vuejs.org/",
               },
               {
                 id: "7",
-                meta: {
-                  title: "ElementUI",
-                  icon: "ep:eleme",
-                },
+                meta: { title: "ElementUI", icon: "ep:eleme" },
                 path: "https://element-plus.org/zh-CN/#/zh-CN",
               },
               {
                 id: "8",
-                meta: {
-                  title: "Iconify",
-                  icon: "line-md:iconify1",
-                },
+                meta: { title: "Iconify", icon: "line-md:iconify1" },
                 path: "https://icon-sets.iconify.design/",
               },
             ],

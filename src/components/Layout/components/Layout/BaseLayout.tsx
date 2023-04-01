@@ -10,6 +10,7 @@ import { ContextMenu } from "@/components/ContextMenu";
 
 const configStore = useConfigStoreWithOut();
 const ns = useNamespace("base-layout");
+
 export default defineComponent({
   name: "BaseLayout",
   setup(props, context) {

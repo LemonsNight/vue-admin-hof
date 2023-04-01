@@ -7,7 +7,11 @@ import router from "@/router";
 export const renderMenuItem = (menuList: MenuItemsType[]) => {
   if (Array.isArray(menuList)) {
     return menuList.map((menuItem) => {
-      if (Array.isArray(menuItem.children) && menuItem.children.length) {
+      if (
+        Array.isArray(menuItem.children) &&
+        menuItem.children.length &&
+        menuItem.children.length
+      ) {
         return (
           <ElSubMenu index={menuItem.id}>
             {{
