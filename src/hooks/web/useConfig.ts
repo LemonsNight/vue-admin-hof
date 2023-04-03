@@ -1,6 +1,6 @@
 import constant from "@/plugins/theme/namespace.module.scss";
 
-const useConfig = () => {
+export const useConfig = () => {
   const namespace = constant.namespace;
   const getPrefixCls = (scope: string) => {
     return `${namespace}-${scope}`;
@@ -10,5 +10,3 @@ const useConfig = () => {
     namespace,
   };
 };
-
-export { useConfig };

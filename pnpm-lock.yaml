@@ -17,8 +17,8 @@ dependencies:
     specifier: ^7.1.13
     version: registry.npmmirror.com/dhtmlx-gantt@7.1.13
   element-plus:
-    specifier: ^2.2.30
-    version: registry.npmmirror.com/element-plus@2.2.30(vue@3.2.47)
+    specifier: ^2.3.2
+    version: registry.npmmirror.com/element-plus@2.3.2(vue@3.2.47)
   lodash-es:
     specifier: ^4.17.21
     version: registry.npmmirror.com/lodash-es@4.17.21
@@ -3611,11 +3611,11 @@ packages:
     version: 1.4.348
     dev: true
 
-  registry.npmmirror.com/element-plus@2.2.30(vue@3.2.47):
-    resolution: {integrity: sha512-HYSnmf2VMGa0gmw03evxevodPy3WimbAd4sfenOAhNs7Wl8IdT+YJjQyGAQjgEjRvhmujN4O/CZqhuEffRyOZg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/element-plus/-/element-plus-2.2.30.tgz}
-    id: registry.npmmirror.com/element-plus/2.2.30
+  registry.npmmirror.com/element-plus@2.3.2(vue@3.2.47):
+    resolution: {integrity: sha512-NIK0QckKKagdlMm3eLoVoD4Lkfj5ECzpZAxwrRLdm1Yi5qiTU9Guor33+IbIa52z4gHMuhMxgSVS2xAGmjLHsw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/element-plus/-/element-plus-2.3.2.tgz}
+    id: registry.npmmirror.com/element-plus/2.3.2
     name: element-plus
-    version: 2.2.30
+    version: 2.3.2
     peerDependencies:
       vue: ^3.2.0
     dependencies:

@@ -6,14 +6,12 @@ import BaseFooter from "./BaseFooter.vue";
 import BaseNav from "./BaseNav.vue";
 import BaseTabsMenu from "./BaseTabsMenu.vue";
 import { useConfigStoreWithOut } from "@/stores/modules/config";
-import { ContextMenu } from "@/components/ContextMenu";
 
 const configStore = useConfigStoreWithOut();
-const ns = useNamespace("base-layout");
-
 export default defineComponent({
   name: "BaseLayout",
   setup(props, context) {
+    const ns = useNamespace("base-layout");
     const { slots } = context;
     return () => (
       <>

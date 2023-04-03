@@ -20,13 +20,13 @@ import {
 import { isFunction, isString } from "@vueuse/core";
 import type { SetSchemaOptions } from "@/components/Form";
 import { isArray, set } from "lodash-es";
-const ns = useNamespace("base-form");
 
 export default defineComponent({
   name: "Form",
   inheritAttrs: false,
   props: formProps(),
   setup(props, context) {
+    const ns = useNamespace("base-form");
     const { attrs, expose } = context;
     const { propsList, formData: propFormData } = toRefs(props);
     const ElFormRef = ref<FormInstance>();

@@ -26,13 +26,6 @@ export default [
                 path: "/chatGPT/chatGPTDemo",
                 component: "/views/ChatGPT/ChatGPT.vue",
               },
-              {
-                id: "333",
-                meta: { title: "BingAI", icon: "mdi:microsoft-edge" },
-                name: "BingAI",
-                path: "/chatGPT/BingAI",
-                component: "/views/ChatGPT/BingAI.vue",
-              },
             ],
           },
           {

@@ -14,12 +14,12 @@ import "./css/table.scss";
 
 import type { TableSchema } from "./constant";
 
-const ns = useNamespace("pro-table");
 const ElTableRef = ref<ComponentRef<typeof ElTable>>();
 export default defineComponent({
   name: "ProTable",
   props: tableProps(),
   setup(props, context) {
+    const ns = useNamespace("pro-table");
     const { attrs } = context;
     const getProps = reactive(getElTableAttrs(props));
     const getPropsList = computed(() => {

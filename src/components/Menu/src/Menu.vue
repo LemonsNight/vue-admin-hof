@@ -7,7 +7,6 @@ import type { PropType } from "vue";
 import { renderMenuItem } from "@/components/Menu/utils/renderMenuItem";
 import { useWindowSize, useThrottleFn } from "@vueuse/core";
 const configStore = useConfigStoreWithOut();
-const ns = useNamespace("base-menu");
 const { width } = useWindowSize();
 const throttledFn = useThrottleFn((v) => {
   configStore.$patch({
@@ -23,6 +22,7 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const ns = useNamespace("base-menu");
     const { menuItemList } = toRefs(props);
     const menu = computed(() =>
       Array.isArray(unref(menuItemList)) ? unref(menuItemList) : []
