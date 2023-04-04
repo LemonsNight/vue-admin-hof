@@ -2,10 +2,10 @@ import type { AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 const BASE_URL = {
   base: "",
-  dev: "http://api_test.kxblive.com",
-  uat: "http://api_uat.kxblive.com",
-  pre: "https://api-pre.kxblive.com",
-  pro: "http://api.kxblive.com",
+  dev: "",
+  uat: "",
+  pre: "",
+  pro: "",
 };
 
 const BASE_TOKEN = {

@@ -30,12 +30,7 @@ import router from "./router";
 import { setupGlobCom } from "@/plugins";
 import { useInitSystem } from "@/hooks/web/useInitSystem";
 
-const { debuggerFn, initRoute } = useInitSystem();
-
-function initSystem() {
-  // 正式环境防止用户调试
-  debuggerFn();
-}
+const { initRoute } = useInitSystem();
 
 function setupAll() {
   const app = createApp(App);
@@ -53,5 +48,3 @@ function setupAll() {
 
 // 初始化注册列表
 setupAll();
-// 初始化网站生态
-initSystem();

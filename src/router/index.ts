@@ -1,11 +1,6 @@
-import {
-  createRouter,
-  createWebHistory,
-  createWebHashHistory,
-} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "@/components/Layout/Layout.js";
 import { user } from "@/router/modules/user";
-// import { example } from "@/router/modules/example";
 import { network } from "@/router/modules/network";
 import NProgress from "nprogress";
 import { usePermissionsStoreWithOut } from "@/stores/modules/permissions";
@@ -13,7 +8,6 @@ import { useGlobalDataStoreWithOut } from "@/stores/modules/globalData";
 
 const whiteList = ["/login"];
 const router = createRouter({
-  // history: createWebHistory(import.meta.env.BASE_URL),
   history: createWebHashHistory(),
   routes: [
     {
@@ -49,7 +43,7 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-router.afterEach((to, from) => {
+router.afterEach(() => {
   NProgress.done();
 });
 router.beforeResolve(async (to) => {

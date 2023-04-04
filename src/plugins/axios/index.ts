@@ -31,6 +31,7 @@ service.interceptors.response.use(
     return axiosResponse(response);
   },
   (error: AxiosError) => {
+    console.log(error);
     return error;
   }
 );

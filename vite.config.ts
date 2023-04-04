@@ -8,6 +8,7 @@ import { resolve } from "path";
 import WindiCSS from "vite-plugin-windicss";
 import visualizer from "rollup-plugin-visualizer"; // 依赖分析
 import autoprefixer from "autoprefixer"; // CSS浏览器前缀
+
 import VueMacros from "unplugin-vue-macros/vite"; // Vue 宏
 import ElementPlus from "unplugin-element-plus/vite";
 
@@ -25,6 +26,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
   const plugins = [];
   const isDev = mode === "dev";
   const isBuild = command === "build";
+  console.log(!isBuild, "isBuild");
   if (isDev && isBuild) {
     plugins.push(
       visualizer({
@@ -37,6 +39,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
   return {
     server: {
       open: true,
+      port: 1314,
     },
     plugins: [
       VueMacros({
@@ -62,12 +65,12 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       WindiCSS(),
       viteMockServe({
         ignore: /^_/,
-        mockPath: "src/mock",
-        localEnabled: !isBuild,
-        prodEnabled: isBuild,
+        mockPath: "mock",
+        localEnabled: !isBuild, // 表示是否在开发环境下启用模拟数据。
+        prodEnabled: isBuild, // 表示是否在生产环境下启用模拟数据
         injectCode: `
-          import { setupProdMockServer } from '@/mock/_createProductionServer'
-
+          import { setupProdMockServer } from '../mock/_createProdMockServer'
+          
           setupProdMockServer()
           `,
       }),
@@ -120,6 +123,16 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
         //   }),
         // ],
       },
+    },
+    optimizeDeps: {
+      include: [
+        "vue",
+        "vue-router",
+        "vue-types",
+        "@iconify/iconify",
+        "@vueuse/core",
+        "axios",
+      ],
     },
   };
 };

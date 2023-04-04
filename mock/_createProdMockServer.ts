@@ -10,5 +10,5 @@ const mockModules: any[] = Object.entries(modules)
   .map((item) => item[1]);
 // 在 vite.config.ts 里面引用
 export function setupProdMockServer() {
-  createProdMockServer([]);
+  createProdMockServer(mockModules);
 }
