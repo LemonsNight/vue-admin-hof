@@ -7,7 +7,7 @@ import {
   ElDropdownMenu,
   ElDropdownItem,
 } from "element-plus";
-import { computed, onMounted, reactive, ref, unref, watch } from "vue";
+import { computed, onMounted, reactive, ref, unref } from "vue";
 import { useMouse } from "@vueuse/core";
 import { ContextMenuList } from "@/components/Layout/constant/BaseTAbsMenu";
 import { useGlobalDataStoreWithOut } from "@/stores/modules/globalData";
@@ -45,14 +45,14 @@ const onBeforeLeave = async (activeName) => {
   await router.push(activeNameRoute.fullPath || activeNameRoute.path);
 };
 
-const onActiveTab = (id: number) => {
-  tabsConfig.value.id = id;
-};
+// const onActiveTab = (id: number) => {
+//   tabsConfig.value.id = id;
+// };
 
-const defaultMenu = [{ label: "菜单" }].map((item, i) => ({
-  label: item.label + i,
-  value: i,
-}));
+// const defaultMenu = [{ label: "菜单" }].map((item, i) => ({
+//   label: item.label + i,
+//   value: i,
+// }));
 
 const menuPoi = reactive({
   x: 0,
@@ -78,6 +78,11 @@ const onContextmenu = (e: Event, item) => {
 
 const handleVisible = (visible: boolean) => {
   isShow.value = visible;
+};
+// 点击菜单项触发的事件回调;
+const handleCommand = (e) => {
+  e.command();
+  console.log(e);
 };
 </script>
 <template>
@@ -127,6 +132,7 @@ const handleVisible = (visible: boolean) => {
   </div>
   <div :style="getStyle" class="absolute z-1 top-0 left-0">
     <ElDropdown
+      @command="handleCommand"
       trigger="contextmenu"
       ref="ElDropdownRef"
       @visible-change="handleVisible"
@@ -155,6 +161,7 @@ const handleVisible = (visible: boolean) => {
             v-for="item in ContextMenuList"
             :key="item.label"
             :divided="item.divided"
+            :command="item"
           >
             <Icon :icon="item.icon"></Icon>
             <span>{{ item.label }}</span>

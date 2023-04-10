@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from "node:url";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import PurgeIcons from "vite-plugin-purge-icons";
-import type { ConfigEnv, UserConfig } from "vite";
+import type { ConfigEnv, PluginOption, UserConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { resolve } from "path";
@@ -10,6 +10,7 @@ import visualizer from "rollup-plugin-visualizer"; // 依赖分析
 import autoprefixer from "autoprefixer"; // CSS浏览器前缀
 
 import VueMacros from "unplugin-vue-macros/vite"; // Vue 宏
+
 import ElementPlus from "unplugin-element-plus/vite";
 
 // import externalGlobals from "rollup-plugin-external-globals"; // 剔除依赖包
@@ -23,10 +24,9 @@ function pathResolve(dir: string) {
 }
 
 export default ({ mode, command }: ConfigEnv): UserConfig => {
-  const plugins = [];
+  const plugins: PluginOption[] = [];
   const isDev = mode === "dev";
   const isBuild = command === "build";
-  console.log(!isBuild, "isBuild");
   if (isDev && isBuild) {
     plugins.push(
       visualizer({
