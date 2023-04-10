@@ -37,6 +37,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
     );
   }
   return {
+    base: isBuild ? "/blog.github.io" : "",
     server: {
       open: true,
       port: 1314,

@@ -5,6 +5,7 @@ import { network } from "@/router/modules/network";
 import NProgress from "nprogress";
 import { usePermissionsStoreWithOut } from "@/stores/modules/permissions";
 import { useGlobalDataStoreWithOut } from "@/stores/modules/globalData";
+import { blog } from "@/router/modules/blog";
 
 const whiteList = ["/login"];
 const router = createRouter({
@@ -30,17 +31,19 @@ const router = createRouter({
     },
     ...user,
     ...network,
+    ...blog,
   ],
 });
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  const { token } = usePermissionsStoreWithOut();
-  if (whiteList.includes(to.path)) {
-    next();
-  } else {
-    token ? next() : next("/login");
-  }
+  // const { token } = usePermissionsStoreWithOut();
+  next();
+  // if (whiteList.includes(to.path)) {
+  //   next();
+  // } else {
+  //   token ? next() : next("/login");
+  // }
 });
 
 router.afterEach(() => {
