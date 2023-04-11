@@ -5,7 +5,7 @@ import { network } from "@/router/modules/network";
 import NProgress from "nprogress";
 import { usePermissionsStoreWithOut } from "@/stores/modules/permissions";
 import { useGlobalDataStoreWithOut } from "@/stores/modules/globalData";
-import { blog } from "@/router/modules/blog";
+// import { blog } from "@/router/modules/blog";
 
 const whiteList = ["/login"];
 const router = createRouter({
@@ -31,7 +31,7 @@ const router = createRouter({
     },
     ...user,
     ...network,
-    ...blog,
+    // ...blog,
   ],
 });
 

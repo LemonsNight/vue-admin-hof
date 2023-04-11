@@ -4,7 +4,7 @@ const blog: RouteRecordRaw[] = [
   {
     path: "/blog",
     name: "Blog",
-    meta: { title: "社区" },
+    meta: { title: "博客" },
     redirect: "/blog/docList",
     children: [
       {

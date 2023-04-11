@@ -12,6 +12,30 @@ export default [
         msg: "success",
         data: [
           {
+            id: "3334",
+            meta: { title: "博客", icon: "fa6-solid:blog", hideMenu: true },
+            name: "Blog",
+            path: "/blog",
+            redirect: "/blog/docsList",
+            component: "_blog",
+            children: [
+              {
+                id: "3335",
+                meta: { title: "列表", icon: "fa6-solid:blog" },
+                name: "BlogList",
+                path: "/blog/docsList",
+                component: "/views/Docs/DocsList.vue",
+              },
+              {
+                id: "3332",
+                meta: { title: "详情", icon: "fa6-solid:blog" },
+                name: "BlogDetail",
+                path: "/blog/blogDetail",
+                component: "/views/Docs/DocsDetail.vue",
+              },
+            ],
+          },
+          {
             name: "Example",
             path: "/example",
             meta: {

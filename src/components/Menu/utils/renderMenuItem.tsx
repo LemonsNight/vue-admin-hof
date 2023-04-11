@@ -7,13 +7,9 @@ import router from "@/router";
 export const renderMenuItem = (menuList: MenuItemsType[]) => {
   if (Array.isArray(menuList)) {
     return menuList.map((menuItem) => {
-      if (
-        Array.isArray(menuItem.children) &&
-        menuItem.children.length &&
-        menuItem.children.length
-      ) {
+      if (Array.isArray(menuItem.children) && menuItem.children.length) {
         return (
-          <ElSubMenu index={menuItem.id}>
+          <ElSubMenu index={menuItem.id} vShow={!menuItem.meta.hideMenu}>
             {{
               title: () => (
                 <>
@@ -29,6 +25,7 @@ export const renderMenuItem = (menuList: MenuItemsType[]) => {
       }
       return (
         <ElMenuItem
+          vShow={!menuItem.meta.hideMenu}
           index={menuItem.id}
           onClick={() => {
             if (menuItem.path) {
