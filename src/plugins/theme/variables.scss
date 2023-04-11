@@ -21,6 +21,12 @@
   --tabs-active-bg-color: var(--layout-main-bg-color);
   --tabs-hover-close-bg-color: theme("colors.dark.100");
   --tabs-hover-close-color: theme("colors.light.200");
+
+  //博客主题
+  --blog-menu-text-color: #000;
+  --blog-menu-secondary-color: #999;
+  --blog-opacity: #ffffffb8;
+  --blog-border-color: #bbb3;
 }
 
 .dark {

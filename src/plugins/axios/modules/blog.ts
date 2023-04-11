@@ -1,6 +1,7 @@
 import config from "@/config/github";
 import AV from "leancloud-storage";
 import { service } from "@/plugins/axios";
+import { Blog } from "@/plugins/axios/api";
 
 const { username, repository, token } = config;
 const GITHUB_API = "https://api.github.com/repos";
@@ -25,4 +26,13 @@ export const queryPosts = ({
 }) => {
   const url = `${blog}/issues?state=${state}&page=${page}&per_page=${pageSize}${filter}`;
   return githubFetch(url);
+};
+
+// 获取博客菜单
+export const getMenuList = async () => {
+  const res = await service({
+    method: "get",
+    url: Blog.menu,
+  });
+  return res && res.data;
 };

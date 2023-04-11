@@ -13,6 +13,14 @@ export default [
         data: [
           {
             id: "3334",
+            meta: { title: "博客", icon: "fa6-solid:blog" },
+            name: "Blog",
+            path: "/blog",
+            component: "_blog",
+            children: [],
+          },
+          {
+            id: "3334",
             meta: { title: "博客", icon: "fa6-solid:blog", hideMenu: true },
             name: "Blog",
             path: "/blog",
@@ -89,6 +97,14 @@ export default [
                 id: "8",
                 meta: { title: "Iconify", icon: "line-md:iconify1" },
                 path: "https://icon-sets.iconify.design/",
+              },
+              {
+                id: "20",
+                meta: {
+                  title: "Vue3后台模板",
+                  icon: "logos:vuetifyjs",
+                },
+                path: "https://kailong110120130.gitee.io/vue-element-plus-admin",
               },
             ],
           },
