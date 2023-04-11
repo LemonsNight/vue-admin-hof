@@ -41,6 +41,13 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
     server: {
       open: true,
       port: 1314,
+      proxy: {
+        "/api.github.com": {
+          target: "https://api.github.com", // easymock
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api.github.com/, ""),
+        },
+      },
     },
     plugins: [
       VueMacros({
