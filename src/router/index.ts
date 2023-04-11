@@ -37,13 +37,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  // const { token } = usePermissionsStoreWithOut();
-  next();
-  // if (whiteList.includes(to.path)) {
-  //   next();
-  // } else {
-  //   token ? next() : next("/login");
-  // }
+  const { token } = usePermissionsStoreWithOut();
+  if (whiteList.includes(to.path)) {
+    next();
+  } else {
+    token ? next() : next("/login");
+  }
 });
 
 router.afterEach(() => {

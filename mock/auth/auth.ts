@@ -12,23 +12,6 @@ export default [
         msg: "success",
         data: [
           {
-            name: "ChatGPT",
-            path: "/chatGPT",
-            meta: { title: "ChatGPT", icon: "material-symbols:chat" },
-            redirect: "/ChatGPT/chatGPTDemo",
-            id: "20",
-            component: "#",
-            children: [
-              {
-                id: "33",
-                meta: { title: "ChatGPT", icon: "material-symbols:chat" },
-                name: "chatGPTDemo",
-                path: "/chatGPT/chatGPTDemo",
-                component: "/views/ChatGPT/ChatGPT.vue",
-              },
-            ],
-          },
-          {
             name: "Example",
             path: "/example",
             meta: {
