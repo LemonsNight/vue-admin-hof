@@ -1,5 +1,4 @@
 import config from "@/config/github";
-import AV from "leancloud-storage";
 import { service } from "@/plugins/axios";
 import { Blog } from "@/plugins/axios/api";
 
@@ -16,6 +15,12 @@ export const githubFetch = async (url): Promise<string> => {
     },
   });
   return res && res.data;
+};
+// 获取github个人信息
+export const getUserInfo = () => {
+  return service({
+    url: "https://api.github.com/users/LemonsNight",
+  });
 };
 // 获取文章列表
 export const queryPosts = ({

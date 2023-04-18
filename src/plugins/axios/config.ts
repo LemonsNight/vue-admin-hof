@@ -29,6 +29,9 @@ const TIMEOUT = 1000 * 60;
 const axiosResponse = (response: AxiosResponse) => {
   const { data } = response;
   const { code, msg } = data;
+  if (!code && !msg) {
+    return response.data;
+  }
   if (response.config.responseType === "blob") {
     return response;
   }

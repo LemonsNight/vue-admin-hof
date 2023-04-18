@@ -16,7 +16,7 @@ const service: AxiosInstance = axios.create({
 service.interceptors.request.use((config) => {
   const { token } = usePermissionsStoreWithOut();
   if (token) {
-    (config?.headers as AxiosRequestHeaders)["access_token"] = token;
+    // (config?.headers as AxiosRequestHeaders)["access_token"] = token;
   }
   if (config.method === "get" && config.params) {
     config.paramsSerializer = (params) => {
