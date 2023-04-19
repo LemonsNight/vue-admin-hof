@@ -28,6 +28,9 @@ const TIMEOUT = 1000 * 60;
 
 const axiosResponse = (response: AxiosResponse) => {
   const { data } = response;
+  if (Array.isArray(data)) {
+    return response.data;
+  }
   const { code, msg } = data;
   if (!code && !msg) {
     return response.data;

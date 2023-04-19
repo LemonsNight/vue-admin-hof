@@ -6,15 +6,14 @@ const { username, repository, token } = config;
 const GITHUB_API = "https://api.github.com/repos";
 const blog = `${GITHUB_API}/${username}/${repository}`;
 const access_token = `token ${token.join("")}`;
-export const githubFetch = async (url): Promise<string> => {
-  const res = await service({
+export const githubFetch = (url): Promise<string> => {
+  return service({
     method: "get",
     url,
     headers: {
       Authorization: access_token,
     },
   });
-  return res && res.data;
 };
 // 获取github个人信息
 export const getUserInfo = () => {

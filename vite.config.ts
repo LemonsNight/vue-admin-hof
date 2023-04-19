@@ -96,6 +96,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
           additionalData: `
             @use "~/plugins/theme/index.scss" as *;
             @use 'element-plus/theme-chalk/src/mixins/mixins' as *;
+            @use "~/plugins/theme/mixins.scss" as *;
           `,
           javascriptEnabled: true,
         },

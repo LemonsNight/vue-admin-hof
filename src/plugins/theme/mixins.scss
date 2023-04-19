@@ -1,0 +1,8 @@
+//换行省略
+@mixin text-ellipsis($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
