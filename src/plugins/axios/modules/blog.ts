@@ -27,6 +27,12 @@ export const getUserInfo = () => {
     url: "https://api.github.com/users/LemonsNight",
   });
 };
+// 获取github个人信息
+export const getUserInfo = () => {
+  return service({
+    url: "https://api.github.com/users/LemonsNight",
+  });
+};
 // 获取文章列表
 export const queryPosts = ({
   page = 1,
